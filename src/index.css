@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+/* The Aether Design System */
+@theme {
+  --color-aether-black: #030303;
+  --color-aether-green: #00ff41;
+  --font-mono: "Fira Code", monospace;
+}
+
+/* The Strict Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* We navigate, we don't scroll */
+  background-color: var(--color-aether-black);
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
