@@ -45,10 +45,14 @@ const NetworkWindow = () => {
         </div>
 
         {/* Resume Download Action */}
-        <button className="mt-8 flex items-center gap-2 px-6 py-2 border border-white/20 bg-white/5 hover:bg-white/10 hover:border-aether-green transition-all duration-300 rounded font-mono text-xs tracking-widest text-white group">
+        <a 
+          href="/Harsh_Gupta_Resume.pdf" 
+          download="Harsh_Gupta_Resume.pdf"
+          className="mt-8 flex items-center gap-2 px-6 py-2 border border-white/20 bg-white/5 hover:bg-white/10 hover:border-aether-green transition-all duration-300 rounded font-mono text-xs tracking-widest text-white group cursor-pointer"
+        >
           <Download size={14} className="group-hover:text-aether-green transition-colors" />
           DOWNLOAD_RESUME.PDF
-        </button>
+        </a>
       </div>
     </div>
   );
