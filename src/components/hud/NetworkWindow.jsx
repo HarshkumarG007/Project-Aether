@@ -38,10 +38,10 @@ const NetworkWindow = () => {
 
         {/* Links Grid */}
         <div className="grid grid-cols-4 gap-4 w-full px-8">
-          <SocialNode icon={<Globe size={18} />} label="GITHUB" link="#" />
-          <SocialNode icon={<Briefcase size={18} />} label="LINKEDIN" link="#" />
-          <SocialNode icon={<Code size={18} />} label="HACKERRANK" link="#" />
-          <SocialNode icon={<Mail size={18} />} label="EMAIL" link="#" />
+          <SocialNode icon={<Globe size={18} />} label="GITHUB" link="https://github.com/HarshkumarG007" />
+          <SocialNode icon={<Briefcase size={18} />} label="LINKEDIN" link="https://www.linkedin.com/in/harshkumarg/" />
+          <SocialNode icon={<Code size={18} />} label="HACKERRANK" link="https://www.hackerrank.com/profile/HarshkumarG" />
+          <SocialNode icon={<Mail size={18} />} label="EMAIL" link="mailto:hrslsha007@gmail.com" />
         </div>
 
         {/* Resume Download Action */}
