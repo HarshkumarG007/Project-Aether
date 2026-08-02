@@ -23,7 +23,7 @@ function App() {
           currentPhase === 'city' ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <AetherCanvas />
+        <AetherCanvas active={currentPhase === 'city'} />
       </div>
 
       {/* HUD Overlays */}

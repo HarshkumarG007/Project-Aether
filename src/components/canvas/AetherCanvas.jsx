@@ -6,12 +6,13 @@ import CyberSpire from './CyberSpire';
 import DataParticles from './DataParticles';
 import CameraController from './CameraController'; // <--- 1. Import it
 
-const AetherCanvas = () => {
+const AetherCanvas = ({ active = true }) => {
   const controlsRef = useRef(); // <--- 2. Create the reference
 
   return (
     <div className="w-full h-full">
       <Canvas
+        frameloop={active ? 'always' : 'never'}
         camera={{ position: [0, 4, 10], fov: 50 }}
         gl={{ antialias: false }}
         style={{ background: '#030303' }}
@@ -29,7 +30,7 @@ const AetherCanvas = () => {
         <DataParticles />
 
         <EffectComposer disableNormalPass>
-          <Bloom luminanceThreshold={1} mipmapBlur intensity={1.5} />
+          <Bloom luminanceThreshold={1} intensity={1.5} />
         </EffectComposer>
 
         <OrbitControls 

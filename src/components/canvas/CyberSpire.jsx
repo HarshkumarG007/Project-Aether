@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 const CyberSpire = () => {
   const meshRef = useRef();
+  const boxGeometry = useMemo(() => new THREE.BoxGeometry(2.02, 6.02, 2.02), []);
 
   // Subtle rotation
   useFrame((state, delta) => {
@@ -25,7 +26,7 @@ const CyberSpire = () => {
         
         {/* Neon Wireframe Overlay - Notice we use toneMapped={false} and emissive multipliers */}
         <lineSegments>
-          <edgesGeometry attach="geometry" args={[new THREE.BoxGeometry(2.02, 6.02, 2.02)]} />
+          <edgesGeometry attach="geometry" args={[boxGeometry]} />
           <lineBasicMaterial 
             attach="material" 
             color={[0, 2, 0.5]} // Multiply color values beyond 1 for HDR glow
