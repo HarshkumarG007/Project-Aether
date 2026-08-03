@@ -61,7 +61,7 @@ const AiLabWindow = () => {
   if (activeWindow !== 'ailab') return null;
 
   return (
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[750px] h-[480px] z-30 flex flex-col bg-black/80 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden shadow-2xl animate-fade-in pointer-events-auto">
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-[750px] h-[85vh] md:h-[480px] z-30 flex flex-col bg-black/80 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden shadow-2xl animate-fade-in pointer-events-auto">
       
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-2 bg-white/10 border-b border-white/10">
@@ -75,7 +75,7 @@ const AiLabWindow = () => {
       </div>
 
       {/* Dashboard Grid */}
-      <div className="flex-1 p-6 grid grid-cols-2 gap-6 overflow-y-auto font-mono text-sm">
+      <div className="flex-1 p-4 md:p-6 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 overflow-y-auto font-mono text-sm">
         
         {/* Module 1: Architecture Status */}
         <div className="border border-white/10 bg-white/5 p-4 rounded-lg flex flex-col justify-between relative overflow-hidden group">
@@ -121,7 +121,7 @@ const AiLabWindow = () => {
         </div>
 
         {/* Module 3: Active Training Pipeline & Logs */}
-        <div className="col-span-2 border border-white/10 bg-white/5 p-4 rounded-lg flex flex-col h-48">
+        <div className="md:col-span-2 border border-white/10 bg-white/5 p-4 rounded-lg flex flex-col h-48">
           <div className="flex justify-between items-center mb-4">
             <span className="text-white text-xs tracking-widest">LIVE TRAINING / LOGS</span>
             <Network size={14} className="text-purple-400" />

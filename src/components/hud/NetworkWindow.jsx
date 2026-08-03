@@ -9,7 +9,7 @@ const NetworkWindow = () => {
   if (activeWindow !== 'network') return null;
 
   return (
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] z-30 flex flex-col bg-black/80 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden shadow-2xl animate-fade-in pointer-events-auto">
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-[500px] h-[80vh] md:h-[350px] z-30 flex flex-col bg-black/80 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden shadow-2xl animate-fade-in pointer-events-auto">
       
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-2 bg-white/10 border-b border-white/10">
@@ -37,7 +37,7 @@ const NetworkWindow = () => {
         <p className="text-xs font-mono text-aether-green tracking-widest mb-6 uppercase">AI & ROBOTICS SPECIALIST / AI-ML ENGINEER</p>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-4 gap-4 w-full px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4 w-full px-4 md:px-8">
           <SocialNode icon={<Globe size={18} />} label="GITHUB" link="https://github.com/HarshkumarG007" />
           <SocialNode icon={<Briefcase size={18} />} label="LINKEDIN" link="https://www.linkedin.com/in/harshkumarg/" />
           <SocialNode icon={<Code size={18} />} label="HACKERRANK" link="https://www.hackerrank.com/profile/HarshkumarG" />

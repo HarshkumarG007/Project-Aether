@@ -7,8 +7,8 @@ const CommandCenter = () => {
   const toggleWindow = useAetherStore((state) => state.toggleWindow);
 
   return (
-    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 pointer-events-auto">
-      <div className="flex items-center gap-6 px-8 py-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_0_15px_rgba(0,255,65,0.1)] transition-all hover:bg-white/10">
+    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 pointer-events-auto w-[95%] md:w-auto">
+      <div className="flex items-center gap-2 md:gap-6 px-4 md:px-8 py-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_0_15px_rgba(0,255,65,0.1)] transition-all hover:bg-white/10 overflow-x-auto justify-start md:justify-center custom-scrollbar">
         
         {/* 1. Terminal */}
         <HudButton 

@@ -15,9 +15,11 @@
 }
 
 body, html {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden; /* We navigate, we don't scroll */
+  position: fixed;  /* Prevent pull-to-refresh on mobile Safari */
+  touch-action: none;
   background-color: var(--color-aether-black);
   color: #ffffff;
   -webkit-font-smoothing: antialiased;
@@ -26,4 +28,5 @@ body, html {
 #root {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
