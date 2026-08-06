@@ -1,0 +1,18 @@
+[
+  {
+    "id": "nexus-dashboard",
+    "title": "Nexus Dashboard",
+    "description": "A high-performance real-time analytics dashboard.",
+    "techStack": ["React", "TypeScript", "WebGL", "Tailwind"],
+    "demonstrates": ["performance", "data visualization", "scalability"],
+    "links": { "github": "#", "live": "#" }
+  },
+  {
+    "id": "auth-microservice",
+    "title": "Auth Guardian",
+    "description": "Secure, scalable authentication microservice.",
+    "techStack": ["Node.js", "Redis", "PostgreSQL", "Docker"],
+    "demonstrates": ["security", "backend architecture", "authentication"],
+    "links": { "github": "#", "live": "#" }
+  }
+]

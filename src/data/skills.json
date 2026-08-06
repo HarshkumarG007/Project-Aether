@@ -1,0 +1,7 @@
+[
+  { "id": "react", "name": "React Ecosystem", "category": "Frontend", "proficiency": 95 },
+  { "id": "threejs", "name": "Three.js / WebGL", "category": "Graphics", "proficiency": 80 },
+  { "id": "node", "name": "Node.js Architecture", "category": "Backend", "proficiency": 90 },
+  { "id": "python", "name": "Python Data/AI", "category": "Backend", "proficiency": 85 },
+  { "id": "tailwind", "name": "Advanced CSS/Tailwind", "category": "Frontend", "proficiency": 95 }
+]

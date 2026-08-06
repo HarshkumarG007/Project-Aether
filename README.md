@@ -1,4 +1,4 @@
-# 🌐 PROJECT AETHER
+# 🌐 PROJECT AETHER (v2.0.0)
 
 > An interactive 3D neural-interface portfolio blending cinematic WebGL experiences with modern front-end architecture.
 
@@ -293,33 +293,33 @@ The project prioritizes efficient rendering techniques, component modularity, an
 
 ### Experience
 
-* [ ] Advanced camera path transitions
-* [ ] Interactive 3D project showcases
-* [ ] Expanded command-center interactions
-* [ ] Enhanced mobile experience
+* [x] Advanced camera path transitions
+* [x] Interactive 3D project showcases
+* [x] Expanded command-center interactions
+* [x] Enhanced mobile experience (via tiered performance system)
 
 ### Graphics
 
 * [ ] Audio-reactive visual effects
-* [ ] Custom GLSL shader environments
-* [ ] Advanced procedural animations
-* [ ] Expanded post-processing pipeline
+* [x] Custom GLSL shader environments
+* [x] Advanced procedural animations
+* [x] Tiered post-processing pipeline
 
 ### Interaction
 
-* [ ] Fully interactive command-line execution
+* [x] Fully interactive command-line execution
 * [ ] Voice-controlled portfolio navigation
-* [ ] Context-aware interface responses
-* [ ] Interactive AI assistant integration
+* [x] Context-aware interface responses
+* [x] Interactive AI assistant integration
 
 ### Engineering
 
-* [ ] Automated testing
-* [ ] CI/CD pipeline
-* [ ] Production deployment
-* [ ] WebGL performance profiling
-* [ ] Accessibility audit
-* [ ] Cross-device performance optimization
+* [x] Automated testing (Vitest)
+* [x] CI/CD pipeline (GitHub Actions)
+* [x] Production deployment (Vercel)
+* [x] WebGL performance profiling
+* [x] Accessibility audit
+* [x] Cross-device performance optimization
 
 ---
 
@@ -345,16 +345,10 @@ The goal is to maintain an immersive experience without allowing visual complexi
 
 ## 🌍 Deployment
 
-Project Aether is designed to support modern static hosting and continuous deployment platforms.
+Project Aether is currently deployed via **Vercel** with a continuous integration pipeline.
 
-Potential deployment targets include:
-
-* Vercel
-* Netlify
-* GitHub Pages
-* Cloudflare Pages
-
-Production deployment and CI/CD configuration will be added as the project approaches release.
+* **CI Pipeline:** GitHub Actions automatically runs the Vitest test suite and linters on every pull request and push to the main branch.
+* **CD Pipeline:** Vercel automatically deploys successful builds from the `main` branch.
 
 ---
 

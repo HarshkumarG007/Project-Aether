@@ -1,16 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAetherStore } from '../../store/useAetherStore';
 import { X, Minus, Square } from 'lucide-react';
+import { parseCommand } from './commandParser';
 
 const TerminalWindow = () => {
   const activeWindow = useAetherStore((state) => state.activeWindow);
   const toggleWindow = useAetherStore((state) => state.toggleWindow);
   
   const [history, setHistory] = useState([
-    { type: 'system', text: 'AETHER OS Terminal v1.0.0 initialized.' },
+    { type: 'system', text: 'AETHER OS Terminal v2.0.0 initialized.' },
     { type: 'system', text: 'Type "help" for a list of available commands.' }
   ]);
   const [input, setInput] = useState('');
+  
+  // Command history buffer
+  const [commandHistory, setCommandHistory] = useState([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+
   const bottomRef = useRef(null);
 
   // Auto-scroll to the bottom when new commands are entered
@@ -21,51 +27,69 @@ const TerminalWindow = () => {
   if (activeWindow !== 'terminal') return null;
 
   const handleCommand = (e) => {
-    if (e.key === 'Enter' && input.trim()) {
-      const cmd = input.trim().toLowerCase();
-      const newHistory = [...history, { type: 'user', text: `> ${cmd}` }];
+    if (e.key === 'Enter') {
+      const cmd = input.trim();
+      if (!cmd) return;
 
-      // Supercharged Command Logic Engine
-      switch (cmd) {
-        case 'help':
-          newHistory.push({ type: 'system', text: 'AVAILABLE COMMANDS: whoami, skills, experience, education, clear, sudo hire-me' });
-          break;
-        case 'whoami':
-          newHistory.push({ type: 'system', text: 'HARSH KUMAR GUPTA' });
-          newHistory.push({ type: 'system', text: 'AI & Robotics Specialist | Transitioning to Core ML Engineering.' });
-          break;
-        case 'skills':
-          newHistory.push({ type: 'system', text: 'LANGUAGES : Python, C++, JavaScript' });
-          newHistory.push({ type: 'system', text: 'AI / ML   : PyTorch, Computer Vision, Kinematics, Applied AI' });
-          newHistory.push({ type: 'system', text: 'FRONTEND  : React, Three.js, WebGL, Tailwind' });
-          break;
-        case 'experience':
-          newHistory.push({ type: 'system', text: 'PROJECT : Built Moodies™ (AI-powered emotional intelligence platform).' });
-          newHistory.push({ type: 'system', text: 'DOMAIN  : Led robotics deployments and STEM training architecture.' });
-          break;
-        case 'education':
-          newHistory.push({ type: 'system', text: 'DEGREE : B.Sc. Mathematics & Physics (2019-2022)' });
-          break;
-        case 'sudo hire-me':
-          newHistory.push({ type: 'system', text: 'ACCESS GRANTED. Initializing interview protocols...' });
-          break;
-        case 'clear':
-          setHistory([]);
-          setInput('');
-          return; // Exit early to avoid setting state twice
-        default:
-          newHistory.push({ type: 'system', text: `Command not found: ${cmd}` });
+      // Update command history
+      const newCommandHistory = [...commandHistory, cmd];
+      setCommandHistory(newCommandHistory);
+      setHistoryIndex(newCommandHistory.length);
+
+      const result = parseCommand(cmd);
+
+      if (result.action === 'CLEAR') {
+        setHistory([]);
+        setInput('');
+        return;
       }
+
+      if (result.action === 'DOWNLOAD_RESUME') {
+        // Trigger a dummy download
+        const link = document.createElement('a');
+        link.href = '/resume.pdf'; // Must exist in public folder
+        link.download = 'resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      if (result.action === 'SPAWN_COFFEE') {
+        useAetherStore.getState().triggerCoffee();
+      }
+
+      const newHistory = [
+        ...history, 
+        { type: 'user', text: `> ${cmd}` },
+        ...(result.output || [])
+      ];
 
       setHistory(newHistory);
       setInput('');
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (historyIndex > 0) {
+        const newIndex = historyIndex - 1;
+        setHistoryIndex(newIndex);
+        setInput(commandHistory[newIndex]);
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (historyIndex < commandHistory.length - 1) {
+        const newIndex = historyIndex + 1;
+        setHistoryIndex(newIndex);
+        setInput(commandHistory[newIndex]);
+      } else {
+        setHistoryIndex(commandHistory.length);
+        setInput('');
+      }
     }
   };
 
   return (
     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-[600px] h-[75vh] md:h-[400px] z-30 flex flex-col bg-black/80 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden shadow-2xl animate-fade-in pointer-events-auto">
       
-      {/* Window Header (Your original design) */}
+      {/* Window Header */}
       <div className="flex items-center justify-between px-4 py-2 bg-white/10 border-b border-white/10">
         <div className="text-xs font-mono text-gray-400">root@aether:~</div>
         <div className="flex gap-2">

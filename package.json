@@ -1,7 +1,7 @@
 {
   "name": "project-aether",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -34,6 +34,7 @@
     "globals": "^17.7.0",
     "postcss": "^8.5.23",
     "tailwindcss": "^4.3.3",
-    "vite": "^8.1.1"
+    "vite": "^8.1.1",
+    "vitest": "^4.1.10"
   }
 }
