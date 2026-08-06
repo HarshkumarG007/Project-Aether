@@ -1,9 +1,9 @@
-import React, { useRef, useMemo } from 'react';
+/* eslint-disable react-hooks/purity */
+import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 const Building = ({ position, scale, color = "#00ff41" }) => {
-  const meshRef = useRef();
   const boxGeom = useMemo(() => new THREE.BoxGeometry(1, 1, 1), []);
 
   return (

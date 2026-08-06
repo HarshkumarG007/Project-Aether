@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAetherStore } from '../../store/useAetherStore';
 import { X, Globe, Briefcase, Code, Mail, Download, Fingerprint } from 'lucide-react';
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAetherStore } from '../../store/useAetherStore';
 import { X, BrainCircuit, Network, BarChart2, Share2 } from 'lucide-react';
 import skillsData from '../../data/skills.json';
@@ -21,6 +21,7 @@ const AiLabWindow = () => {
 
   useEffect(() => {
     if (activeWindow !== 'ailab') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setAnimateBars(false);
       return;
     }

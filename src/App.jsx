@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAetherStore } from './store/useAetherStore';
 import BootScreen from './components/hud/BootScreen';
 import AetherCanvas from './components/canvas/AetherCanvas';

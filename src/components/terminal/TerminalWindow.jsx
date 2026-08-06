@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useAetherStore } from '../../store/useAetherStore';
 import { X, Minus, Square } from 'lucide-react';
 import { parseCommand } from './commandParser';

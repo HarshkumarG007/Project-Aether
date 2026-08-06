@@ -1,4 +1,3 @@
-import React from 'react';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { useAetherStore } from '../../store/useAetherStore';
 

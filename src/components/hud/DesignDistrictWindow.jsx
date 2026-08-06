@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAetherStore } from '../../store/useAetherStore';
 import { X, Layers, Palette } from 'lucide-react';
 import ParallaxWrapper from '../ui/ParallaxWrapper';

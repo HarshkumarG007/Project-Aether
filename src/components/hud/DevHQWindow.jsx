@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAetherStore } from '../../store/useAetherStore';
 import { X, GitCommit, GitPullRequest, GitBranch, Terminal } from 'lucide-react';
 
@@ -41,7 +41,7 @@ const DevHQWindow = () => {
           followers: userData.followers,
           commits: recentCommits
         });
-      } catch (err) {
+      } catch {
         console.warn('GitHub API rate limited, using fallback data');
         setError(true);
         // Fallback data

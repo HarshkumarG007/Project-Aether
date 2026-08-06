@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useAetherStore } from '../../store/useAetherStore';
 import { X, Database, ExternalLink, Code, ArrowLeft } from 'lucide-react';
 import projectsData from '../../data/projects.json';
@@ -52,8 +52,9 @@ const ProjectsWindow = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
   // Reset selected project if window closes
-  React.useEffect(() => {
+  useEffect(() => {
     if (activeWindow !== 'projects') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedProject(null);
     }
   }, [activeWindow]);

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Terminal, Cpu, Database, Network, Play, Square as SquareIcon, Bot, Code, Palette, Sun, Moon } from 'lucide-react';
 import { useAetherStore } from '../../store/useAetherStore';
 import MagneticWrapper from '../ui/MagneticWrapper';

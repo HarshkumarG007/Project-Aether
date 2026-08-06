@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useAetherStore } from '../../store/useAetherStore';
 import { X, Sparkles, Send, Bot, User } from 'lucide-react';
 import { queryAssistant } from '../../data/assistantIndex';

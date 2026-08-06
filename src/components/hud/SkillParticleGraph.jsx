@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import skillsData from '../../data/skills.json';
 import projectsData from '../../data/projects.json';
 
