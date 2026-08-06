@@ -94,7 +94,7 @@ const TerminalWindow = () => {
           
           {/* Window Header */}
           <div className="flex items-center justify-between px-4 py-2 bg-white/10 border-b border-white/10">
-            <div className="text-xs font-mono text-gray-400">root@aether:~</div>
+            <div className="text-xs font-mono text-gray-400 glitch-text" data-text="root@aether:~">root@aether:~</div>
             <div className="flex gap-2">
               <button className="text-gray-400 hover:text-white transition-colors"><Minus size={14} /></button>
               <button className="text-gray-400 hover:text-white transition-colors"><Square size={12} /></button>

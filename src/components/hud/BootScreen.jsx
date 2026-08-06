@@ -72,13 +72,16 @@ const BootScreen = () => {
     >
       <div className="flex flex-col gap-2">
         {bootSequence.map((text, index) => (
-          <p 
+          <div 
             key={index} 
             ref={(el) => (textRefs.current[index] = el)}
-            className="text-sm md:text-base opacity-0"
+            className="text-sm md:text-base opacity-0 flex items-center"
           >
-            <span className="opacity-50 mr-2">{">"}</span> {text}
-          </p>
+            <span className="opacity-50 mr-2">{">"}</span> 
+            <span className={index === bootSequence.length - 1 ? 'glitch-text text-white font-bold' : ''} data-text={text}>
+              {text}
+            </span>
+          </div>
         ))}
       </div>
       

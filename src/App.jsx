@@ -12,29 +12,11 @@ import DevHQWindow from './components/hud/DevHQWindow';
 import DesignDistrictWindow from './components/hud/DesignDistrictWindow';
 import DashboardWidget from './components/hud/DashboardWidget';
 import NarrativeOverlay from './components/hud/NarrativeOverlay';
+import CustomCursor from './components/ui/CustomCursor';
+import GlobalOverlay from './components/ui/GlobalOverlay';
 
 const KONAMI_CODE = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 
-const CursorGlow = () => {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const updatePos = (e) => {
-      setPos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', updatePos);
-    return () => window.removeEventListener('mousemove', updatePos);
-  }, []);
-
-  return (
-    <div
-      className="pointer-events-none fixed inset-0 z-30 mix-blend-screen transition-opacity duration-300"
-      style={{
-        background: `radial-gradient(600px circle at ${pos.x}px ${pos.y}px, rgba(0,255,65,0.08), transparent 40%)`
-      }}
-    />
-  );
-};
 
 const GlobalRipple = () => {
   const [ripples, setRipples] = useState([]);
@@ -122,7 +104,8 @@ function App() {
       {currentPhase === 'city' && (
         <>
           <GlobalRipple />
-          <CursorGlow />
+          <GlobalOverlay />
+          <CustomCursor />
           <DashboardWidget />
           <NarrativeOverlay />
           

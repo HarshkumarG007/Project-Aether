@@ -7,6 +7,7 @@ import ParallaxWrapper from '../ui/ParallaxWrapper';
 const TiltCard = ({ children, onClick }) => {
   const ref = useRef(null);
   const [style, setStyle] = useState({ transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' });
+  const [glareStyle, setGlareStyle] = useState({ opacity: 0 });
 
   const handleMouseMove = (e) => {
     if (!ref.current) return;
@@ -23,12 +24,22 @@ const TiltCard = ({ children, onClick }) => {
       transform: `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`,
       transition: 'none'
     });
+
+    setGlareStyle({
+      opacity: 1,
+      background: `radial-gradient(circle at ${clientX - left}px ${clientY - top}px, rgba(255,255,255,0.1) 0%, transparent 60%)`,
+      transition: 'none'
+    });
   };
 
   const handleMouseLeave = () => {
     setStyle({
       transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
       transition: 'transform 0.5s ease-out'
+    });
+    setGlareStyle({
+      opacity: 0,
+      transition: 'opacity 0.5s ease-out'
     });
   };
 
@@ -38,9 +49,10 @@ const TiltCard = ({ children, onClick }) => {
       onClick={onClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="group relative border border-white/10 bg-white/5 p-5 rounded-lg hover:bg-white/10 hover:border-blue-400/50 cursor-pointer shadow-xl will-change-transform z-10"
+      className="group relative border border-white/10 bg-white/5 p-5 rounded-lg hover:bg-white/10 hover:border-blue-400/50 cursor-pointer shadow-xl will-change-transform z-10 overflow-hidden"
       style={style}
     >
+      <div className="absolute inset-0 pointer-events-none z-20" style={glareStyle} />
       {children}
     </div>
   );
