@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAetherStore } from '../../store/useAetherStore';
 import { X, Minus, Square } from 'lucide-react';
 import { parseCommand } from './commandParser';
+import ParallaxWrapper from '../ui/ParallaxWrapper';
 
 const TerminalWindow = () => {
   const activeWindow = useAetherStore((state) => state.activeWindow);
@@ -87,44 +88,48 @@ const TerminalWindow = () => {
   };
 
   return (
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-[600px] h-[75vh] md:h-[400px] z-30 flex flex-col bg-black/80 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden shadow-2xl animate-fade-in pointer-events-auto">
-      
-      {/* Window Header */}
-      <div className="flex items-center justify-between px-4 py-2 bg-white/10 border-b border-white/10">
-        <div className="text-xs font-mono text-gray-400">root@aether:~</div>
-        <div className="flex gap-2">
-          <button className="text-gray-400 hover:text-white transition-colors"><Minus size={14} /></button>
-          <button className="text-gray-400 hover:text-white transition-colors"><Square size={12} /></button>
-          <button onClick={() => toggleWindow('terminal')} className="text-red-400 hover:text-red-300 transition-colors"><X size={14} /></button>
-        </div>
-      </div>
-
-      {/* Terminal Body */}
-      <div className="flex-1 p-4 font-mono text-sm overflow-y-auto custom-scrollbar">
-        {history.map((line, i) => (
-          <div key={i} className={`mb-1 tracking-wide ${line.type === 'user' ? 'text-white' : 'text-aether-green'}`}>
-            {line.text}
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-auto">
+      <ParallaxWrapper amount={20}>
+        <div className="w-[95vw] md:w-[600px] h-[75vh] md:h-[400px] flex flex-col bg-black/80 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden shadow-2xl animate-fade-in">
+          
+          {/* Window Header */}
+          <div className="flex items-center justify-between px-4 py-2 bg-white/10 border-b border-white/10">
+            <div className="text-xs font-mono text-gray-400">root@aether:~</div>
+            <div className="flex gap-2">
+              <button className="text-gray-400 hover:text-white transition-colors"><Minus size={14} /></button>
+              <button className="text-gray-400 hover:text-white transition-colors"><Square size={12} /></button>
+              <button onClick={() => toggleWindow('terminal')} className="text-red-400 hover:text-red-300 transition-colors"><X size={14} /></button>
+            </div>
           </div>
-        ))}
-        
-        {/* Active Input Line */}
-        <div className="flex items-center mt-2">
-          <span className="text-white mr-2">{'>'}</span>
-          <input 
-            type="text" 
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleCommand}
-            autoFocus
-            className="flex-1 bg-transparent outline-none text-white font-mono caret-aether-green"
-            spellCheck="false"
-            autoComplete="off"
-          />
+
+          {/* Terminal Body */}
+          <div className="flex-1 p-4 font-mono text-sm overflow-y-auto custom-scrollbar">
+            {history.map((line, i) => (
+              <div key={i} className={`mb-1 tracking-wide ${line.type === 'user' ? 'text-white' : 'text-aether-green'}`}>
+                {line.text}
+              </div>
+            ))}
+            
+            {/* Active Input Line */}
+            <div className="flex items-center mt-2">
+              <span className="text-white mr-2">{'>'}</span>
+              <input 
+                type="text" 
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleCommand}
+                autoFocus
+                className="flex-1 bg-transparent outline-none text-white font-mono caret-aether-green"
+                spellCheck="false"
+                autoComplete="off"
+              />
+            </div>
+            
+            {/* Invisible div for smooth scrolling */}
+            <div ref={bottomRef} className="h-4" />
+          </div>
         </div>
-        
-        {/* Invisible div for smooth scrolling */}
-        <div ref={bottomRef} className="h-4" />
-      </div>
+      </ParallaxWrapper>
     </div>
   );
 };

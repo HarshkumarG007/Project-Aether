@@ -36,6 +36,45 @@ const CursorGlow = () => {
   );
 };
 
+const GlobalRipple = () => {
+  const [ripples, setRipples] = useState([]);
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      const newRipple = {
+        id: Date.now(),
+        x: e.clientX,
+        y: e.clientY
+      };
+      setRipples((prev) => [...prev, newRipple]);
+
+      // Remove ripple after animation completes (600ms)
+      setTimeout(() => {
+        setRipples((prev) => prev.filter(r => r.id !== newRipple.id));
+      }, 600);
+    };
+
+    window.addEventListener('click', handleClick);
+    return () => window.removeEventListener('click', handleClick);
+  }, []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
+      {ripples.map((ripple) => (
+        <div
+          key={ripple.id}
+          className="absolute border border-aether-green/50 rounded-full animate-ripple shadow-[0_0_20px_rgba(0,255,65,0.5)]"
+          style={{
+            left: ripple.x,
+            top: ripple.y,
+            transform: 'translate(-50%, -50%)'
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 function App() {
   const currentPhase = useAetherStore((state) => state.currentPhase);
   const [devMode, setDevMode] = useState(false);
@@ -82,6 +121,7 @@ function App() {
       {/* HUD Overlays */}
       {currentPhase === 'city' && (
         <>
+          <GlobalRipple />
           <CursorGlow />
           <DashboardWidget />
           <NarrativeOverlay />
