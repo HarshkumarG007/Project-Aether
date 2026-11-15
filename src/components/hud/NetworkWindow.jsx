@@ -91,7 +91,7 @@ const NetworkWindow = () => {
         {/* Resume Download */}
         <div className="border-t border-white/5 pt-4">
           <a
-            href="/Harsh_Gupta_Resume.pdf"
+            href="./Harsh_Gupta_Resume.pdf"
             download="Harsh_Kumar_Gupta_Resume.pdf"
             className="flex items-center justify-center gap-2 w-full py-2.5 border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 rounded text-xs font-mono text-white/70 hover:text-white transition-all duration-300 group"
           >

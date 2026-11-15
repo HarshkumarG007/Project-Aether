@@ -144,18 +144,15 @@
 
 ---
 
-## Phase 10: Deployment 🔲 PENDING
+## Phase 10: Deployment 🔄 IN PROGRESS
 
 - [x] Final `npm run build` — zero errors
 - [x] Run `npm run lint` — zero warnings/errors
-- [ ] Test production build with `npm run preview`
-- [ ] Choose deployment target (GitHub Pages / Vercel / Netlify)
-- [ ] Configure `vite.config.js` `base` if on GitHub Pages subdirectory
-- [ ] Deploy to chosen host
+- [x] Configure `vite.config.js` `base: './'` for universal static hosting
+- [x] Setup automated GitHub Pages deployment workflow (`.github/workflows/deploy.yml`)
+- [ ] Enable GitHub Pages in repository settings (Settings → Pages → Source: GitHub Actions)
 - [ ] Verify deployed site loads correctly
-- [ ] Verify 3D canvas loads and renders
 - [ ] Test on mobile device (real device, not emulator)
-- [ ] Commit final state and tag `V.2.0`
 
 ---
 
