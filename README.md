@@ -1,385 +1,181 @@
 # 🌐 PROJECT AETHER (v2.0.0)
 
-> An interactive 3D neural-interface portfolio blending cinematic WebGL experiences with modern front-end architecture.
+> **"Engineering intelligent systems. Making AI useful, reliable, and accessible."**  
+> An interactive 3D WebGL and glassmorphic HUD personal portfolio for **Harsh Kumar Gupta**, Applied AI/ML Engineer.
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![React](https://img.shields.io/badge/React-18.x-blue)
-![Three.js](https://img.shields.io/badge/Three.js-WebGL-black)
-![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-v4-cyan)
-![Zustand](https://img.shields.io/badge/State-Zustand-orange)
-![Vite](https://img.shields.io/badge/Build-Vite-purple)
+[![Build & Test Status](https://img.shields.io/badge/build-passing-brightgreen)](#)
+[![React](https://img.shields.io/badge/React-19.x-blue)](https://react.dev/)
+[![Three.js](https://img.shields.io/badge/Three.js-WebGL-black)](https://threejs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-v4-cyan)](https://tailwindcss.com/)
+[![Zustand](https://img.shields.io/badge/State-Zustand_v5-orange)](https://github.com/pmndrs/zustand)
+[![Vite](https://img.shields.io/badge/Build-Vite_v8-purple)](https://vitejs.dev/)
+[![Vitest](https://img.shields.io/badge/Tests-8%20passed-brightgreen)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
 ## 📖 Overview
 
-**Project Aether** is a next-generation personal portfolio designed to feel less like a conventional website and more like an immersive, futuristic operating system.
+**Project Aether** is the definitive professional portfolio of **Harsh Kumar Gupta**, an Applied AI/ML Engineer based in Varanasi, India.
 
-The experience combines an interactive **WebGL 3D environment** with a responsive, **React-powered DOM interface**, creating a unified digital experience built around cinematic visuals, modular interfaces, and state-driven interactions.
-
-Project Aether serves two purposes:
-
-1. **A personal portfolio** for showcasing projects, technical skills, and professional identity.
-2. **An engineering showcase** demonstrating modern front-end architecture, real-time 3D rendering, interactive UI systems, and performance-conscious development.
-
-The application is structured around a separation of concerns between the **3D rendering layer**, **DOM-based interface layer**, and **centralized application state**.
+Rather than a generic static template, Aether functions as an engineer's interactive digital workspace. Built at the intersection of real-time 3D rendering (WebGL / Three.js / R3F) and a precision React 19 HUD interface, it demonstrates:
+- **Engineering Depth:** Detailed case studies articulating problem statements, retrieval-vs-ranking trade-offs, and calibrated uncertainty.
+- **Practical Execution:** Working systems with sub-6ms latencies, containerized services, and local-first runtimes.
+- **Technical Communication:** Published engineering notes, clear architectural documentation, and transparent evaluation caveats.
 
 ---
 
-## ✨ Core System Architecture
+## 📚 Engineering Documentation Suite
 
-Project Aether is organized around three primary architectural layers.
+This project follows a structured **Vibe Coding Workflow** pipeline from idea to architecture, development, testing, and deployment. The complete specification is documented in [`docs/`](docs/):
 
-### 🧠 1. State Management Engine
-
-A centralized `Zustand` store coordinates application-wide UI state, module visibility, and interface transitions.
-
-The state layer acts as the communication bridge between the interactive DOM interface and the WebGL environment.
-
-**Key principles:**
-
-* **Centralized State:** Shared application state is managed through a lightweight global store.
-* **Selective Subscriptions:** Components subscribe only to the state they require, helping minimize unnecessary UI updates.
-* **Decoupled Architecture:** UI components and 3D components remain independently structured while responding to shared application state.
-* **Modular Navigation:** Individual experiences such as the Terminal, AI Lab, Projects, and Network interfaces can be activated through state-driven interactions.
+| Document | Description |
+| :--- | :--- |
+| **[`PRD.md`](docs/PRD.md)** | Product Requirements Document — User journeys, MVP features, and roadmap |
+| **[`architecture.md`](docs/architecture.md)** | System Architecture — Rendering pipeline, state flow, and 3D scene topology |
+| **[`rules.md`](docs/rules.md)** | Development Rulebook — Standards, React 19 hooks, and content integrity rules |
+| **[`design.md`](docs/design.md)** | Design System — Color palette, typography scale, surface patterns, and motion |
+| **[`task.md`](docs/task.md)** | Task Breakdown — Sequential checklist from audit to testing and deployment |
+| **[`memory.md`](docs/memory.md)** | Project Memory — Decision logs, resolved issues, and architectural history |
 
 ---
 
-### 🪐 2. WebGL 3D Experience Layer
+## 🚀 Featured Engineering Projects
 
-The immersive spatial environment is powered by **Three.js** and **React Three Fiber**.
+Aether presents engineering projects as full case studies with architecture flows, technical trade-offs, and metrics:
 
-The 3D layer is responsible for rendering the visual environment independently from the DOM-based interface.
-
-**Key systems include:**
-
-* **Procedural Particle System:** Mathematically generated particles rendered through buffer-based geometry techniques.
-* **Procedural Geometry:** Custom 3D structures forming the core visual identity of the Aether environment.
-* **Lighting & Atmosphere:** Dynamic lighting, environmental effects, and atmospheric depth.
-* **Additive Blending:** Used for selected visual elements to create a futuristic, holographic aesthetic.
-* **Post-Processing:** Cinematic visual effects such as bloom and other rendering enhancements where appropriate.
-* **Interactive Camera:** Spatial navigation and camera movement designed to create a sense of depth and immersion.
-
-The 3D environment is designed with performance awareness in mind, balancing visual complexity with responsive interaction.
+| # | Project | Category | Key Technologies | Highlights |
+|---|---|---|---|---|
+| **01** | **[Netflix RecSys](https://github.com/HarshkumarG007/netflix_recsys)** | Applied ML | Python, PyTorch, FAISS, XGBoost, Polars, FastAPI, Docker | Two-Tower candidate retrieval (MovieLens 25M, 62K items) + XGBoost pairwise LTR. HitRate@100: 0.8034, Recall@100: 0.0982, ~5.27ms latency. |
+| **02** | **Aegis-Eval** | Generative AI / Evaluation | Python, Quantized LLMs, GGUF, Qwen 2.5, RAG, Knowledge Graphs | Local-first RAG evaluation framework targeting ~8GB VRAM with deterministic multi-hop benchmark generation. |
+| **03** | **CogniGuard** | AI Security & Governance | Python, Knowledge Graphs, LLM Pipelines, Authorization Guardrails | Knowledge graph authorization boundaries preventing unauthorized context leakage in enterprise retrieval flows. |
+| **04** | **LeadGuard** | Applied ML / Geospatial | Python, XGBoost, Scikit-learn, Geospatial ML | Spatial risk-scoring pipeline with probability calibration and confidence-aware uncertainty estimation. |
+| **05** | **Prerna** | AI Applications / Systems | Rust, React, Ollama, Local LLMs, GGUF | Privacy-preserving local-first AI assistant with decoupled Rust backend, local model runtimes, and zero cloud dependency. |
+| **06** | **ArthaIQ** | Statistical Modeling | Python, Pandas, Statistical Modeling | Statistical compensation intelligence engine with confidence interval estimation and explainable feature attribution. |
 
 ---
 
-### 🖥️ 3. Glassmorphic HUD
+## 📝 Published Engineering Notes
 
-The DOM layer provides the primary user interface and interaction system.
-
-Built with React and Tailwind CSS, the HUD is positioned above the WebGL canvas and provides structured access to the portfolio's different experiences.
-
-**Core interface modules include:**
-
-* **Boot Sequence:** A simulated system initialization experience.
-* **Command Center:** Central navigation hub for accessing portfolio modules.
-* **Projects Window:** Interactive presentation of technical and creative projects.
-* **AI Lab:** Dedicated interface for showcasing artificial intelligence and machine learning work.
-* **Network Window:** A futuristic contact and professional identity interface.
-* **Terminal:** Command-line-inspired interaction layer.
-
-The UI is designed around a modular component architecture so individual experiences can evolve independently.
+Aether includes an in-app technical reader displaying engineering lessons and architectural trade-offs:
+1. **"Why Recommendation Systems Need Separate Retrieval and Ranking Stages"** — Detailed analysis of latency budgeting (<2ms retrieval + ~3ms ranking), Two-Tower vector lookups, candidate-aware ranking features, and MMR diversity.
+2. **"Solving Sample Selection Bias with Hard-Negative Mining"** — Why uniform random negative sampling fails in implicit feedback catalogues and how mining hard negatives from FAISS nearest neighbors enforces precise decision boundaries.
 
 ---
 
-## 🧩 System Topology
+## 🧩 System Architecture
 
 ```text
-                         ┌─────────────────────────┐
-                         │      PROJECT AETHER     │
-                         └────────────┬────────────┘
-                                      │
-                    ┌─────────────────┴─────────────────┐
-                    │                                   │
-                    ▼                                   ▼
-           ┌──────────────────┐                ┌──────────────────┐
-           │   React DOM UI   │                │  WebGL 3D Layer  │
-           │                  │                │                  │
-           │  Glassmorphic UI │                │  Three.js / R3F  │
-           │  HUD Components  │                │  Buffer Geometry │
-           │  Terminal        │◄──────────────►│  Lighting        │
-           │  Project Modules │                │  Particles       │
-           │  Network Matrix  │                │  Post-Processing │
-           └────────┬─────────┘                └────────┬─────────┘
-                    │                                   │
-                    └─────────────────┬─────────────────┘
-                                      │
-                                      ▼
-                           ┌─────────────────────┐
-                           │    Zustand Store    │
-                           │                     │
-                           │  Global UI State    │
-                           │  Module Visibility  │
-                           │  UI Transitions     │
-                           │  Application State  │
-                           └─────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                      PROJECT AETHER                         │
+│                 (Vite SPA — Single HTML Shell)              │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+           ┌───────────────┴───────────────┐
+           ▼                               ▼
+  ┌─────────────────┐             ┌─────────────────┐
+  │  React DOM UI   │             │  WebGL 3D Layer  │
+  │  (HUD Windows)  │◄──State────►│  (R3F Canvas)   │
+  │  Tailwind CSS   │   (Zustand) │  Three.js        │
+  └────────┬────────┘             └────────┬────────┘
+           │                               │
+  ┌────────▼────────┐             ┌────────▼────────┐
+  │  Window System  │             │  Scene Objects  │
+  │  CommandCenter  │             │  AetherCity     │
+  │  ProjectsWindow │             │  CyberSpire     │
+  │  AiLabWindow    │             │  DataParticles  │
+  │  AboutWindow    │             │  Stars          │
+  │  NetworkWindow  │             │  Fog            │
+  │  NotesWindow    │             │  PostFX (Bloom) │
+  │  TerminalWindow │             │  CameraController│
+  └─────────────────┘             └─────────────────┘
 ```
 
 ---
 
 ## 🛠️ Technical Stack
 
-| Category             | Technology        | Purpose                                         |
-| :------------------- | :---------------- | :---------------------------------------------- |
-| **Framework**        | React             | Component-based application architecture        |
-| **Build Tool**       | Vite              | Fast development server and production bundling |
-| **3D Engine**        | Three.js          | Hardware-accelerated WebGL rendering            |
-| **React 3D**         | React Three Fiber | Declarative React integration for Three.js      |
-| **3D Utilities**     | React Three Drei  | Reusable helpers and abstractions for R3F       |
-| **State Management** | Zustand           | Lightweight global application state            |
-| **Styling**          | Tailwind CSS      | Utility-first responsive styling                |
-| **Iconography**      | Lucide React      | Consistent scalable interface icons             |
+| Layer | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Framework** | React 19 | Component architecture & hooks |
+| **Build Tool** | Vite 8 | Fast HMR dev server & production bundling |
+| **3D Engine** | Three.js (0.185) | Hardware-accelerated WebGL rendering |
+| **React 3D** | React Three Fiber (v9) | Declarative 3D scene management |
+| **3D Utilities** | React Three Drei (v10) | OrbitControls, Stars, procedural helpers |
+| **Post-Processing** | React Three Postprocessing | Cinematic bloom & tone-mapping effects |
+| **State** | Zustand (v5) | Centralized, decoupled global UI state |
+| **Animations** | GSAP 3 | Boot sequence & interface transitions |
+| **Styling** | Tailwind CSS v4 | Utility-first responsive styling & CSS tokens |
+| **Icons** | Lucide React | Clean, scalable interface iconography |
+| **Testing** | Vitest | Fast unit testing for assistants and command parsers |
+| **CI/CD** | GitHub Actions | Automated linting, test suites, and build verification |
 
 ---
 
-## 🏗️ Architectural Principles
+## ⚡ Performance Optimizations
 
-Project Aether is built around several engineering principles.
-
-### Separation of Concerns
-
-The application separates:
-
-* 3D rendering logic
-* DOM interface components
-* Global state management
-* Terminal interaction
-* Portfolio content
-
-This keeps individual systems modular and easier to maintain.
-
-### Component Modularity
-
-Each major interface and visual system is encapsulated into dedicated React components.
-
-This makes it possible to extend the portfolio without turning the root application into a monolithic component.
-
-### Performance Awareness
-
-The architecture is designed to avoid unnecessary coupling between the React DOM tree and the WebGL rendering loop.
-
-Performance considerations include:
-
-* Buffer-based geometry for particle rendering
-* Selective state subscriptions
-* GPU-accelerated WebGL rendering
-* Modular component updates
-* Separation between visual rendering and interface logic
-
-Performance targets should be validated through browser profiling and real-device testing as the project evolves.
-
-### Progressive Enhancement
-
-The portfolio prioritizes a rich visual experience while maintaining a structured DOM-based interface.
-
-Future iterations may introduce additional optimizations for lower-powered devices and mobile hardware.
+1. **Paused Render Loop:** Canvas `frameloop` dynamically switches between `'always'` and `'never'`, halting WebGL calculations during the boot screen.
+2. **Geometry Caching:** Procedural geometries are cached via `useMemo` to eliminate per-render garbage collection churn.
+3. **GPU-Aware Post-Processing:** Bloom effects configured without heavy `mipmapBlur` to maintain high frame-rates across integrated GPUs.
+4. **Accessible Animations:** Full `@media (prefers-reduced-motion: reduce)` support built into the stylesheet.
 
 ---
 
-## 🚀 Local Development
+## 🚀 Getting Started
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/project-aether.git
+git clone https://github.com/HarshkumarG007/Project-Aether.git
+cd Project-Aether
 ```
 
-### 2. Navigate to the Project
-
-```bash
-cd project-aether
-```
-
-### 3. Install Dependencies
+### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 4. Start the Development Server
+### 3. Run Development Server
 
 ```bash
 npm run dev
 ```
 
-The development server will typically be available at:
+Visit `http://localhost:5173/` in your browser.
 
-```text
-http://localhost:5173/
+### 4. Run Test Suite
+
+```bash
+npm test
 ```
 
-### 5. Create a Production Build
+### 5. Run Lint Check
+
+```bash
+npm run lint
+```
+
+### 6. Build for Production
 
 ```bash
 npm run build
 ```
 
-### 6. Preview the Production Build
-
-```bash
-npm run preview
-```
-
----
-
-## 📁 Source Architecture
-
-```text
-project-aether/
-│
-├── public/
-│
-├── src/
-│   │
-│   ├── components/
-│   │   │
-│   │   ├── canvas/
-│   │   │   ├── AetherCanvas.jsx
-│   │   │   ├── CyberSpire.jsx
-│   │   │   └── DataParticles.jsx
-│   │   │
-│   │   ├── hud/
-│   │   │   ├── BootScreen.jsx
-│   │   │   ├── CommandCenter.jsx
-│   │   │   ├── ProjectsWindow.jsx
-│   │   │   ├── AiLabWindow.jsx
-│   │   │   └── NetworkWindow.jsx
-│   │   │
-│   │   └── terminal/
-│   │       └── TerminalWindow.jsx
-│   │
-│   ├── store/
-│   │   └── useAetherStore.js
-│   │
-│   ├── App.jsx
-│   └── main.jsx
-│
-├── package.json
-├── README.md
-├── vite.config.js
-└── LICENSE
-```
-
-> **Note:** The structure above represents the intended high-level architecture. File names and directories may evolve as the project develops.
-
----
-
-## 🎯 Design Philosophy
-
-Project Aether is built around three core principles.
-
-### 01 — Immersion
-
-The portfolio should function as a cohesive digital environment rather than a collection of disconnected static pages.
-
-Every interaction is intended to contribute to the feeling of navigating a futuristic digital system.
-
-### 02 — Engineering Rigor
-
-Visual complexity should be supported by a maintainable and modular software architecture.
-
-The goal is not simply to create an impressive visual experience, but to demonstrate how interactive systems can be structured, extended, and maintained.
-
-### 03 — Performance First
-
-Cinematic visuals must coexist with responsive interactions.
-
-The project prioritizes efficient rendering techniques, component modularity, and separation between the WebGL rendering pipeline and DOM interface logic.
-
----
-
-## 📈 Roadmap
-
-### Experience
-
-* [x] Advanced camera path transitions
-* [x] Interactive 3D project showcases
-* [x] Expanded command-center interactions
-* [x] Enhanced mobile experience (via tiered performance system)
-
-### Graphics
-
-* [ ] Audio-reactive visual effects
-* [x] Custom GLSL shader environments
-* [x] Advanced procedural animations
-* [x] Tiered post-processing pipeline
-
-### Interaction
-
-* [x] Fully interactive command-line execution
-* [ ] Voice-controlled portfolio navigation
-* [x] Context-aware interface responses
-* [x] Interactive AI assistant integration
-
-### Engineering
-
-* [x] Automated testing (Vitest)
-* [x] CI/CD pipeline (GitHub Actions)
-* [x] Production deployment (Vercel)
-* [x] WebGL performance profiling
-* [x] Accessibility audit
-* [x] Cross-device performance optimization
-
----
-
-## 🔬 Performance & Engineering Goals
-
-As the project evolves, performance will be evaluated across both the **DOM interface** and **WebGL rendering pipeline**.
-
-Planned areas of evaluation include:
-
-* Frame-rate stability
-* GPU utilization
-* JavaScript execution time
-* React component rendering
-* WebGL draw calls
-* Memory usage
-* Initial page load
-* Asset loading performance
-* Mobile and low-powered device behavior
-
-The goal is to maintain an immersive experience without allowing visual complexity to compromise usability or responsiveness.
-
----
-
-## 🌍 Deployment
-
-Project Aether is currently deployed via **Vercel** with a continuous integration pipeline.
-
-* **CI Pipeline:** GitHub Actions automatically runs the Vitest test suite and linters on every pull request and push to the main branch.
-* **CD Pipeline:** Vercel automatically deploys successful builds from the `main` branch.
-
 ---
 
 ## 👨‍💻 Architected By
 
-### Harsh Kumar Gupta
+### **Harsh Kumar Gupta**
+**Applied AI/ML Engineer** — Varanasi, Uttar Pradesh, India
 
-**AI & Robotics Specialist / ML Engineer**
-
-Building intelligent systems, immersive digital experiences, and technology at the intersection of:
-
-* Artificial Intelligence
-* Machine Learning
-* Mathematics
-* Front-End Engineering
-* 3D Interactive Experiences
+- **GitHub:** [@HarshkumarG007](https://github.com/HarshkumarG007)
+- **LinkedIn:** [linkedin.com/in/harshkumarg](https://www.linkedin.com/in/harshkumarg/)
+- **Credly:** [credly.com/users/harshkumarg](https://www.credly.com/users/harshkumarg)
+- **Email:** [hrslsha007@gmail.com](mailto:hrslsha007@gmail.com)
 
 ---
 
 ## 📄 License
 
-This project is intended to be released under the **MIT License**.
-
-See the [`LICENSE`](LICENSE) file for details.
-
----
-
-## ⭐ Project Status
-
-**Project Aether — V1.0 Foundation**
-
-An evolving experiment in combining modern web engineering, real-time 3D graphics, and immersive interface design into a single portfolio experience.
-
-> **The interface is the portfolio. The architecture is the story.**
+This project is licensed under the [MIT License](LICENSE).

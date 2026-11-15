@@ -15,7 +15,7 @@ export const queryAssistant = (query) => {
   }
 
   // Tag matching for projects
-  const matches = projects.filter(p => p.demonstrates.some(tag => lowerQuery.includes(tag)));
+  const matches = projects.filter(p => (p.tags || p.demonstrates || []).some(tag => lowerQuery.includes(tag.toLowerCase())));
   if (matches.length > 0) {
     return { type: 'projects', data: matches };
   }
@@ -26,10 +26,10 @@ export const queryAssistant = (query) => {
     return { type: 'skills', data: skillMatches };
   }
 
-  // Authentication specific as requested in spec
-  if (lowerQuery.includes('authentication')) {
-    const authMatches = projects.filter(p => p.demonstrates.includes('authentication'));
-    return { type: 'projects', data: authMatches };
+  // Security or authentication queries
+  if (lowerQuery.includes('authentication') || lowerQuery.includes('security')) {
+    const secMatches = projects.filter(p => (p.tags || []).includes('privacy-security') || (p.demonstrates || []).includes('authentication'));
+    return { type: 'projects', data: secMatches };
   }
 
   return { type: 'text', content: "I couldn't find specific data regarding that in my current knowledge base." };
