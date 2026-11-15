@@ -1,18 +1,145 @@
 [
   {
-    "id": "nexus-dashboard",
-    "title": "Nexus Dashboard",
-    "description": "A high-performance real-time analytics dashboard.",
-    "techStack": ["React", "TypeScript", "WebGL", "Tailwind"],
-    "demonstrates": ["performance", "data visualization", "scalability"],
-    "links": { "github": "#", "live": "#" }
+    "id": "netflix-recsys",
+    "num": "01",
+    "title": "Production-Inspired Multi-Stage Recommendation Engine",
+    "shortTitle": "Netflix RecSys",
+    "category": "Applied ML",
+    "categoryTag": "applied-ml",
+    "tags": ["applied-ml", "recommendation-systems"],
+    "status": "Complete",
+    "techStack": ["Python", "PyTorch", "FAISS", "XGBoost", "Polars", "FastAPI", "Docker", "Streamlit"],
+    "links": { "github": "https://github.com/HarshkumarG007/netflix_recsys", "live": null },
+    "summary": "A two-stage recommendation system built on MovieLens 25M (25M interactions, 62K+ items) implementing industry-standard retrieval-then-ranking architecture.",
+    "problem": "Traditional collaborative filtering struggles to scale to catalogues with tens of thousands of items. A single model cannot simultaneously be fast enough for real-time serving and nuanced enough for quality ranking.",
+    "architecture": ["User/Interaction Data", "Data Processing (Polars)", "Two-Tower Embedding Model (PyTorch)", "FAISS ANN Search", "Top-100 Candidates", "Feature Engineering", "XGBoost Pairwise Ranker (LTR)", "MMR Diversity + Epsilon-Greedy", "Final Recommendations"],
+    "decisions": [
+      { "decision": "Two-Tower Neural Retrieval", "reason": "Separating user and item encoders enables offline item embedding precomputation, reducing serving latency to sub-millisecond FAISS lookups." },
+      { "decision": "FAISS ANN Search", "reason": "Exact nearest-neighbor search over 62K items is feasible but adds latency. FAISS approximate search retrieves Top-100 candidates with negligible quality loss." },
+      { "decision": "XGBoost Pairwise LTR for Ranking", "reason": "Gradient-boosted trees excel at structured feature tables (candidate-aware features) and can capture non-linear interactions between user context and item attributes." },
+      { "decision": "Hard-Negative Mining", "reason": "Random negatives during training create sample selection bias — the model never learns to distinguish true negatives from items it simply hasn't seen. Hard negatives from FAISS search are items that look similar but were not interacted with, forcing the model to learn meaningful boundaries." },
+      { "decision": "MMR Diversity + Epsilon-Greedy Exploration", "reason": "Maximal Marginal Relevance prevents recommendation homogeneity. Epsilon-greedy provides controlled exploration without full bandit infrastructure." }
+    ],
+    "metrics": [
+      { "label": "HitRate@100", "value": "0.8034", "note": "Offline evaluation on MovieLens 25M held-out set" },
+      { "label": "Recall@100", "value": "0.0982", "note": "Retrieval stage recall on held-out test set" },
+      { "label": "E2E Latency", "value": "~5.27ms", "note": "End-to-end inference latency measured locally" },
+      { "label": "Dataset Size", "value": "25M+", "note": "Interactions from MovieLens 25M" },
+      { "label": "Catalogue", "value": "62K+ items", "note": "Movies in the dataset" }
+    ],
+    "limitations": "Offline metrics do not guarantee production performance. The system is not tested under production traffic or real user feedback loops. Cold-start fallback uses popularity-based heuristics.",
+    "highlights": ["25M interaction dataset", "Sub-6ms e2e latency", "Two-stage architecture", "Hard-negative mining", "MMR diversity"]
   },
   {
-    "id": "auth-microservice",
-    "title": "Auth Guardian",
-    "description": "Secure, scalable authentication microservice.",
-    "techStack": ["Node.js", "Redis", "PostgreSQL", "Docker"],
-    "demonstrates": ["security", "backend architecture", "authentication"],
-    "links": { "github": "#", "live": "#" }
+    "id": "aegis-eval",
+    "num": "02",
+    "title": "Local-First RAG Evaluation Framework",
+    "shortTitle": "Aegis-Eval",
+    "category": "Generative AI",
+    "categoryTag": "generative-ai",
+    "tags": ["generative-ai", "llm-rag", "ai-infrastructure"],
+    "status": "In Development",
+    "techStack": ["Python", "Quantized LLMs", "GGUF", "Qwen 2.5", "RAG", "Knowledge Graphs"],
+    "links": { "github": "https://github.com/HarshkumarG007", "live": null },
+    "summary": "A local-first evaluation framework for RAG pipelines targeting resource-constrained environments (~8GB VRAM) using quantized Qwen 2.5 models for deterministic multi-hop benchmark generation.",
+    "problem": "Evaluating RAG systems is fundamentally different from evaluating standalone LLMs. Standard LLM benchmarks do not capture retrieval quality, context faithfulness, or multi-hop reasoning chains. Cloud-based evaluation APIs introduce latency, cost, and reproducibility concerns.",
+    "architecture": ["Benchmark Corpus", "Knowledge Graph Construction", "Multi-Hop Question Generation (Qwen 2.5-GGUF)", "Deterministic Benchmark Dataset", "RAG Pipeline Under Test", "Retrieval Evaluation", "Generation Faithfulness Check", "Evaluation Report"],
+    "decisions": [
+      { "decision": "Local-First with Quantized Models", "reason": "8GB VRAM constraint eliminates full-precision frontier models. GGUF quantization of Qwen 2.5 preserves sufficient reasoning capability for benchmark generation while remaining deployable on consumer hardware." },
+      { "decision": "Knowledge Graph for Multi-Hop Generation", "reason": "Flat document sets cannot systematically generate multi-hop questions that require traversing relationships across documents. Knowledge graphs make the relationship structure explicit and queryable." },
+      { "decision": "Deterministic Benchmark Generation", "reason": "Stochastic benchmark generation makes it impossible to compare system versions fairly. Seeded, deterministic generation ensures reproducibility across evaluation runs." }
+    ],
+    "metrics": [],
+    "limitations": "Benchmark scores reflect the specific corpus used for generation. Framework is under active development; production evaluation metrics are not yet published.",
+    "highlights": ["8GB VRAM target", "Quantized Qwen 2.5", "Multi-hop benchmarks", "Reproducible evaluation", "Local inference"]
+  },
+  {
+    "id": "cogniguard",
+    "num": "03",
+    "title": "Context Authorization and AI Security Framework",
+    "shortTitle": "CogniGuard",
+    "category": "AI Security",
+    "categoryTag": "privacy-security",
+    "tags": ["privacy-security", "generative-ai"],
+    "status": "In Development",
+    "techStack": ["Python", "Knowledge Graphs", "LLM Pipelines", "Authorization Frameworks"],
+    "links": { "github": "https://github.com/HarshkumarG007", "live": null },
+    "summary": "An authorization boundary framework that combines knowledge graphs with LLM pipelines to prevent unauthorized context leakage and implement compliance-oriented guardrails.",
+    "problem": "LLM applications that retrieve context from enterprise data stores face a fundamental authorization problem: the retrieval layer often operates without awareness of the user's data access permissions. A user query can retrieve and expose information they are not authorized to see.",
+    "architecture": ["User Request + Identity", "Authorization Policy Graph", "Permission-Aware Retrieval Filter", "Authorized Context Retrieval", "LLM Generation", "Output Compliance Check", "Guardrail Enforcement", "Authorized Response"],
+    "decisions": [
+      { "decision": "Knowledge Graphs for Authorization", "reason": "Graph structures naturally model hierarchical and relational permission boundaries. Policy queries become graph traversals rather than complex SQL or rule engines." },
+      { "decision": "Pre-Retrieval Authorization", "reason": "Post-generation filtering (removing sensitive information from LLM output) is fragile. The authorization check must happen before context enters the LLM context window." }
+    ],
+    "metrics": [],
+    "limitations": "No formal security certification or penetration testing. The framework addresses architectural authorization boundaries, not cryptographic guarantees. Real-world security validation requires dedicated threat modeling.",
+    "highlights": ["Pre-retrieval authorization", "Knowledge graph policies", "Compliance guardrails", "Context boundary enforcement"]
+  },
+  {
+    "id": "leadguard",
+    "num": "04",
+    "title": "Geospatial Risk Prediction and Decision Support",
+    "shortTitle": "LeadGuard",
+    "category": "Applied ML",
+    "categoryTag": "statistical-modeling",
+    "tags": ["applied-ml", "statistical-modeling"],
+    "status": "Complete",
+    "techStack": ["Python", "XGBoost", "Scikit-learn", "Geospatial ML"],
+    "links": { "github": "https://github.com/HarshkumarG007", "live": null },
+    "summary": "A geospatial risk-scoring pipeline implementing gradient-boosted decision trees with calibrated uncertainty estimation for confidence-aware, risk-sensitive decision support.",
+    "problem": "Risk prediction systems that return a single score without communicating uncertainty can mislead decision-makers into treating low-confidence predictions with the same weight as high-confidence ones. In domains with safety implications, knowing when to trust a model is as important as the model's output.",
+    "architecture": ["Geospatial Data Inputs", "Spatial Feature Engineering", "Domain-Specific Feature Engineering", "XGBoost / Gradient-Boosted Trees", "Probability Calibration", "Confidence Interval Estimation", "Risk Score + Uncertainty Bounds", "Decision Support Output"],
+    "decisions": [
+      { "decision": "Calibrated Uncertainty Estimation", "reason": "Raw model probabilities from gradient-boosted trees are often poorly calibrated. Platt scaling or isotonic regression aligns predicted probabilities with empirical frequencies." },
+      { "decision": "Spatial Feature Engineering", "reason": "Geographic proximity and spatial autocorrelation are domain-critical signals. Standard tabular features ignore spatial relationships that are predictive of risk clustering." }
+    ],
+    "metrics": [],
+    "limitations": "Geographic coverage, dataset details, and performance benchmarks are not publicly reported. Predictions carry uncertainty bounds and should not be used as sole decision inputs.",
+    "highlights": ["Geospatial ML", "Calibrated uncertainty", "Confidence-aware decisions", "Gradient-boosted trees"]
+  },
+  {
+    "id": "prerna",
+    "num": "05",
+    "title": "Privacy-Preserving Local-First AI Architecture",
+    "shortTitle": "Prerna",
+    "category": "AI Applications",
+    "categoryTag": "privacy-security",
+    "tags": ["privacy-security", "ai-infrastructure"],
+    "status": "In Development",
+    "techStack": ["Rust", "React", "Ollama", "Local LLMs"],
+    "links": { "github": "https://github.com/HarshkumarG007", "live": null },
+    "summary": "A privacy-first AI assistant with a decoupled Rust backend and React frontend, running local model runtimes via Ollama with structured context retrieval and zero-cloud-dependency architecture.",
+    "problem": "Cloud-based AI assistants process user data on remote servers, creating inherent privacy risks. Users working with sensitive personal, professional, or domain-specific information have limited control over data retention, usage, and exposure.",
+    "architecture": ["User Input (React Frontend)", "Local API (Rust Backend)", "Structured Context Store", "Ollama Local Model Runtime", "GGUF Quantized LLM", "Context Retrieval", "Response Generation", "Response (React Frontend)"],
+    "decisions": [
+      { "decision": "Rust Backend", "reason": "Rust provides memory safety without garbage collection overhead, making it suitable for a lightweight local server that interfaces with native model runtimes." },
+      { "decision": "Ollama for Local Inference", "reason": "Ollama abstracts GGUF model management, quantization selection, and GPU/CPU inference without requiring custom CUDA setups." },
+      { "decision": "Zero-Cloud-Dependency Architecture", "reason": "All inference, context storage, and retrieval occurs locally. No data leaves the user's machine. This is an architectural objective, not an independently verified privacy guarantee." }
+    ],
+    "metrics": [],
+    "limitations": "Privacy architecture is a design goal. No formal privacy audit has been conducted. Security properties depend on the local execution environment.",
+    "highlights": ["Rust backend", "Local inference only", "Ollama runtime", "Zero cloud dependency", "React frontend"]
+  },
+  {
+    "id": "arthaiq",
+    "num": "06",
+    "title": "Statistical Compensation Intelligence Engine",
+    "shortTitle": "ArthaIQ",
+    "category": "Statistical Modeling",
+    "categoryTag": "statistical-modeling",
+    "tags": ["statistical-modeling", "applied-ml"],
+    "status": "Complete",
+    "techStack": ["Python", "Pandas", "Statistical Modeling"],
+    "links": { "github": "https://github.com/HarshkumarG007", "live": null },
+    "summary": "A compensation benchmarking engine that models salary distributions across roles, experience tiers, and technical skill sets with confidence intervals and feature attribution for explainability.",
+    "problem": "Compensation decisions made without statistical grounding can introduce systematic bias. A data-driven approach requires modeling the relationship between role, experience, skills, and compensation while communicating prediction uncertainty honestly.",
+    "architecture": ["Input: Role + Experience + Skills", "Feature Encoding", "Statistical Compensation Model", "Confidence Interval Estimation", "Feature Attribution (Explainability)", "Compensation Range Output + Explanation"],
+    "decisions": [
+      { "decision": "Confidence Intervals over Point Estimates", "reason": "Reporting a single salary number implies false precision. Confidence intervals communicate the inherent variability in compensation data and reduce over-reliance on point predictions." },
+      { "decision": "Feature Attribution for Explainability", "reason": "Decision-makers need to understand why a compensation range was produced, not just what it is. Attribution methods connect model outputs to specific input features." }
+    ],
+    "metrics": [],
+    "limitations": "Dataset details and accuracy benchmarks are not publicly disclosed. Predictions reflect the training data distribution and should not substitute for comprehensive market research.",
+    "highlights": ["Statistical modeling", "Confidence intervals", "Feature attribution", "Explainable predictions"]
   }
 ]

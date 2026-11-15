@@ -10,6 +10,8 @@ import NetworkWindow from './components/hud/NetworkWindow';
 import AiAssistant from './components/hud/AiAssistant';
 import DevHQWindow from './components/hud/DevHQWindow';
 import DesignDistrictWindow from './components/hud/DesignDistrictWindow';
+import AboutWindow from './components/hud/AboutWindow';
+import NotesWindow from './components/hud/NotesWindow';
 import DashboardWidget from './components/hud/DashboardWidget';
 import NarrativeOverlay from './components/hud/NarrativeOverlay';
 import CustomCursor from './components/ui/CustomCursor';
@@ -114,6 +116,8 @@ function App() {
           <AiLabWindow />
           <ProjectsWindow />
           <NetworkWindow />
+          <AboutWindow />
+          <NotesWindow />
           <AiAssistant />
           <DevHQWindow />
           <DesignDistrictWindow />

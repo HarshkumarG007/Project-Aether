@@ -4,7 +4,13 @@
 @theme {
   --color-aether-black: #030303;
   --color-aether-green: #00ff41;
-  --font-mono: "Fira Code", monospace;
+  --color-aether-cyan: #00e5ff;
+  --color-aether-blue: #3b82f6;
+  --color-aether-muted: #8892a4;
+  --color-aether-surface: #0d1117;
+  --color-aether-border: rgba(255,255,255,0.08);
+  --font-mono: "Fira Code", "JetBrains Mono", monospace;
+  --font-sans: "Inter", system-ui, sans-serif;
 }
 
 /* The Strict Reset */
@@ -117,4 +123,38 @@ body, html {
   text-shadow: -1px 0 blue;
   clip-path: inset(80% 0 20% 0);
   animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
+
+@keyframes scan {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+.animate-scan { animation: scan 2s ease-in-out infinite; }
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,255,65,0.2); border-radius: 2px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0,255,65,0.4); }
+
+.text-aether-muted { color: var(--color-aether-muted); }
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,5 +1,4 @@
-
-import { Terminal, Cpu, Database, Network, Play, Square as SquareIcon, Bot, Code, Palette, Sun, Moon } from 'lucide-react';
+import { Terminal, Cpu, Layers, Network, Play, Square as SquareIcon, User, BookOpen, Sun, Moon } from 'lucide-react';
 import { useAetherStore } from '../../store/useAetherStore';
 import MagneticWrapper from '../ui/MagneticWrapper';
 
@@ -14,114 +13,51 @@ const CommandCenter = () => {
   const setTheme = useAetherStore((state) => state.setTheme);
 
   const handleToggle = (windowName) => {
-    if (tourState === 'active') stopTour(); // Stop tour if user interacts
-
+    if (tourState === 'active') stopTour();
     const isCurrentlyActive = activeWindow === windowName;
     toggleWindow(windowName);
-    
     if (isCurrentlyActive) {
-      // Closing the window, return to home
       setCameraTarget({ position: [0, 4, 10], lookAt: [0, 0, 0] });
     } else {
-      // Opening a window, move to target
-      switch (windowName) {
-        case 'terminal':
-          setCameraTarget({ position: [-3, 1, 6], lookAt: [0, 2, 0] });
-          break;
-        case 'ailab':
-          setCameraTarget({ position: [0, 1.5, 4], lookAt: [0, 4, 0] });
-          break;
-        case 'projects':
-          setCameraTarget({ position: [5, 6, 5], lookAt: [0, 1, 0] });
-          break;
-        case 'network':
-          setCameraTarget({ position: [0, 8, 8], lookAt: [0, 3, 0] });
-          break;
-        case 'assistant':
-          setCameraTarget({ position: [-2, 3, 7], lookAt: [0, 2, 0] });
-          break;
-        case 'devhq':
-          setCameraTarget({ position: [2, 5, -2], lookAt: [0, 3, 0] });
-          break;
-        case 'design':
-          setCameraTarget({ position: [-4, 6, -2], lookAt: [0, 4, 0] });
-          break;
-        default:
-          setCameraTarget({ position: [0, 4, 10], lookAt: [0, 0, 0] });
-      }
+      const targets = {
+        terminal: { position: [-3, 1, 6], lookAt: [0, 2, 0] },
+        ailab: { position: [0, 1.5, 4], lookAt: [0, 4, 0] },
+        projects: { position: [5, 6, 5], lookAt: [0, 1, 0] },
+        network: { position: [0, 8, 8], lookAt: [0, 3, 0] },
+        about: { position: [-2, 3, 7], lookAt: [0, 2, 0] },
+        notes: { position: [2, 5, -2], lookAt: [0, 3, 0] },
+      };
+      setCameraTarget(targets[windowName] || { position: [0, 4, 10], lookAt: [0, 0, 0] });
     }
   };
 
   return (
     <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 pointer-events-auto w-[95%] md:w-auto">
-      <div className="flex items-center gap-2 md:gap-4 px-4 md:px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_0_15px_rgba(0,255,65,0.1)] transition-all hover:bg-white/10 overflow-x-auto justify-start md:justify-center custom-scrollbar">
-        
-        {/* Quick Tour Button */}
-        <HudButton 
-          icon={tourState === 'active' ? <SquareIcon size={18} /> : <Play size={18} />} 
-          label={tourState === 'active' ? "STOP TOUR" : "TOUR"} 
+      <div className="flex items-center gap-1 md:gap-3 px-4 md:px-6 py-3.5 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/8 shadow-[0_8px_32px_rgba(0,0,0,0.6)] overflow-x-auto justify-start md:justify-center custom-scrollbar">
+
+        {/* Tour */}
+        <HudButton
+          icon={tourState === 'active' ? <SquareIcon size={16} /> : <Play size={16} />}
+          label={tourState === 'active' ? "STOP" : "TOUR"}
           active={tourState === 'active'}
-          highlight={true}
-          onClick={() => {
-             if (tourState === 'active') stopTour();
-             else startTour();
-          }}
+          highlight="green"
+          onClick={() => { if (tourState === 'active') stopTour(); else startTour(); }}
         />
-        <div className="w-px h-6 bg-white/20"></div>
+        <Divider />
 
-        <HudButton 
-          icon={<Terminal size={18} />} 
-          label="TERMINAL" 
-          active={activeWindow === 'terminal'} 
-          onClick={() => handleToggle('terminal')}
-        />
-        <HudButton 
-          icon={<Cpu size={18} />} 
-          label="AI LAB" 
-          active={activeWindow === 'ailab'} 
-          onClick={() => handleToggle('ailab')}
-        />
-        <HudButton 
-          icon={<Database size={18} />} 
-          label="PROJECTS" 
-          active={activeWindow === 'projects'} 
-          onClick={() => handleToggle('projects')}
-        />
-        <HudButton 
-          icon={<Network size={18} />} 
-          label="NETWORK" 
-          active={activeWindow === 'network'} 
-          onClick={() => handleToggle('network')}
-        />
-        
-        <div className="w-px h-6 bg-white/20"></div>
+        <HudButton icon={<Layers size={16} />} label="PROJECTS" active={activeWindow === 'projects'} onClick={() => handleToggle('projects')} />
+        <HudButton icon={<Cpu size={16} />} label="SKILLS" active={activeWindow === 'ailab'} onClick={() => handleToggle('ailab')} />
+        <HudButton icon={<User size={16} />} label="ABOUT" active={activeWindow === 'about'} onClick={() => handleToggle('about')} />
+        <HudButton icon={<Network size={16} />} label="CONNECT" active={activeWindow === 'network'} onClick={() => handleToggle('network')} />
 
-        {/* Phase 3 additions */}
-        <HudButton 
-          icon={<Bot size={18} />} 
-          label="ASSISTANT" 
-          active={activeWindow === 'assistant'} 
-          onClick={() => handleToggle('assistant')}
-        />
-        <HudButton 
-          icon={<Code size={18} />} 
-          label="DEV HQ" 
-          active={activeWindow === 'devhq'} 
-          onClick={() => handleToggle('devhq')}
-        />
-        <HudButton 
-          icon={<Palette size={18} />} 
-          label="DESIGN" 
-          active={activeWindow === 'design'} 
-          onClick={() => handleToggle('design')}
-        />
+        <Divider />
+        <HudButton icon={<BookOpen size={16} />} label="NOTES" active={activeWindow === 'notes'} onClick={() => handleToggle('notes')} />
+        <HudButton icon={<Terminal size={16} />} label="TERMINAL" active={activeWindow === 'terminal'} onClick={() => handleToggle('terminal')} />
 
-        <div className="w-px h-6 bg-white/20"></div>
-
-        {/* Theme Toggle */}
-        <HudButton 
-          icon={theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />} 
-          label="THEME" 
+        <Divider />
+        <HudButton
+          icon={theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+          label="THEME"
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         />
       </div>
@@ -129,14 +65,20 @@ const CommandCenter = () => {
   );
 };
 
-const HudButton = ({ icon, label, active = false, highlight = false, onClick }) => {
+const Divider = () => <div className="w-px h-5 bg-white/10 shrink-0" />;
+
+const HudButton = ({ icon, label, active = false, highlight, onClick }) => {
+  const activeColor = highlight === 'green' ? 'text-aether-green' : 'text-aether-cyan';
+  const activeBg = highlight === 'green' ? 'bg-aether-green/10 shadow-[0_0_10px_rgba(0,255,65,0.2)]' : 'bg-cyan-400/10 shadow-[0_0_10px_rgba(0,229,255,0.2)]';
   return (
     <MagneticWrapper amount={0.4}>
-      <button 
+      <button
         onClick={onClick}
-        className={`flex flex-col items-center gap-1 group transition-colors duration-300 ${active ? (highlight ? 'text-blue-400' : 'text-aether-green') : 'text-gray-400 hover:text-white'}`}
+        aria-label={label}
+        className={`flex flex-col items-center gap-1 group transition-all duration-200 ${active ? activeColor : 'text-gray-500 hover:text-white'}`}
+        aria-pressed={active}
       >
-        <div className={`p-2 rounded-lg transition-all duration-300 ${active ? (highlight ? 'bg-blue-400/10 shadow-[0_0_10px_rgba(59,130,246,0.3)]' : 'bg-aether-green/10 shadow-[0_0_10px_rgba(0,255,65,0.3)]') : 'group-hover:bg-white/5'}`}>
+        <div className={`p-1.5 rounded-lg transition-all duration-200 ${active ? activeBg : 'group-hover:bg-white/5'}`}>
           {icon}
         </div>
         <span className="text-[8px] font-mono tracking-widest min-w-max">{label}</span>
