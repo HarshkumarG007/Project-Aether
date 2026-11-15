@@ -140,7 +140,7 @@
 - [ ] Verify all interactive elements are keyboard-focusable
 - [ ] Check contrast ratios on key text (aim for WCAG AA)
 - [ ] Add `loading="lazy"` to any images added
-- [ ] Consider code-splitting 3D canvas (dynamic import)
+- [x] Consider code-splitting 3D canvas (manualChunks: vendor, three, postprocessing)
 
 ---
 
